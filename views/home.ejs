@@ -1,11 +1,18 @@
 <%# Home page template displaying a list of aquarium zones %>
   <%# Loops through the zones array (from index.mjs) and displays each zone's name in a list item %>
 
-    <ul>
-      <% zones.forEach(zone=> { %>
-        <li>
-          <%= zone.name %>
-            <%# outputs the zone name, HTML-escaped %>
-        </li>
-        <% }) %>
-    </ul>
+    <%- include('partials/head', { pageTitle: 'Home' }) %>
+      <%- include('partials/header') %>
+
+        <main>
+          <%# Loops through the zones array (from index.mjs) and displays each zone's name in a list item %>
+            <ul>
+              <% zones.forEach(zone=> { %>
+                <li>
+                  <%= zone.name %>
+                </li>
+                <% }) %>
+            </ul>
+        </main>
+
+        <%- include('partials/footer') %>

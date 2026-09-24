@@ -1,0 +1,18 @@
+:root {
+	--color-deep: #0b1d2e;
+	--color-deep-alt: #12283b;
+	--color-teal: #1b4b5a;
+	--color-cyan-glow: #4fd8e0;
+	--color-warm-accent: #f2a154;
+	--color-text-light: #eaf6f8;
+	--color-text-dark: #0b1d2e;
+
+	--font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 2rem;
+	--space-xl: 4rem;
+
+	--radius: 8px;
+}
