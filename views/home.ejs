@@ -10,6 +10,9 @@
           <div class="hero__glass">
             <h1 class="hero__title">Aquarium World</h1>
             <p class="hero__tagline">Dive deeper than you imagined.</p>
+            <p class="hero__subtext">From sunlit shallows to the crushing dark of the trench, four worlds of water are
+              waiting —
+              each one real, each one worth protecting.</p>
             <a href="#zones" class="btn">Explore the zones</a>
             <label class="hero__toggle">
               <input type="checkbox" id="motion-toggle">
@@ -22,13 +25,15 @@
           <section id="zones" class="zones-preview">
             <% zones.forEach(zone=> { %>
               <div class="card">
+                <div class="zone-card__image zone--<%= zone.role %>" <% if (zone.image) { %> style="background-image:
+                  url('/assets/<%= zone.image %>');"<% } %>></div>
                 <h2>
                   <%= zone.name %>
                 </h2>
                 <p>
                   <%= zone.tagline %>
                 </p>
-                <a href="/zones/<%= zone.slug %>" class="btn">Visit this zone</a>
+                <a href="/zones/<%= zone.slug %>" class="btn">Explore <%= zone.name %></a>
               </div>
               <% }) %>
           </section>

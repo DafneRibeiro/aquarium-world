@@ -60,3 +60,12 @@
 	gap: var(--space-lg);
 	padding: var(--space-xl) var(--space-lg);
 }
+
+// Zone card image styling
+.zone-card__image {
+	height: 160px;
+	border-radius: var(--radius);
+	background-size: cover;
+	background-position: center;
+	margin-bottom: var(--space-md);
+}

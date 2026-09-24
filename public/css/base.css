@@ -80,3 +80,16 @@ a:focus {
 	text-align: center;
 	font-size: 0.85rem;
 }
+
+.zone--showpiece {
+	background-image: linear-gradient(135deg, var(--color-warm-accent), var(--color-cyan-glow));
+}
+.zone--atmosphere {
+	background-image: linear-gradient(135deg, var(--color-deep), var(--color-teal));
+}
+.zone--hands-on {
+	background-image: linear-gradient(135deg, var(--color-teal), var(--color-warm-accent));
+}
+.zone--surprising {
+	background-image: linear-gradient(135deg, var(--color-teal), var(--color-cyan-glow));
+}

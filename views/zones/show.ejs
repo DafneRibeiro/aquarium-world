@@ -1,0 +1,49 @@
+<%- include('../partials/head', { pageTitle: zone.name, pageStyles: 'zone.css' }) %>
+  <%- include('../partials/header') %>
+
+    <main class="zone zone--<%= zone.role %>" <% if (zone.hero_image) { %> style="background-image: url('/assets/<%=
+        zone.hero_image %>');"<% } %>>
+          <div class="zone__tint"></div>
+          <div class="zone__content">
+            <h1>
+              <%= zone.name %>
+            </h1>
+            <p class="zone__tagline">
+              <%= zone.tagline %>
+            </p>
+            <p>
+              <%= zone.description %>
+            </p>
+
+            <% if (zone.hero_image==='jellyfish_blue_underwater_956608_3840x2160.jpg' ) { %>
+              <p class="zone__credit">Photo: ume-y (Flickr), used under CC BY.</p>
+              <% } %>
+
+                <section>
+                  <h2>Conservation note</h2>
+                  <p>
+                    <%= zone.conservation_note %>
+                  </p>
+                </section>
+
+                <% if (exhibits.length> 0) { %>
+                  <section class="zone__exhibits">
+                    <h2>Exhibits</h2>
+                    <div class="zones-preview">
+                      <% exhibits.forEach(exhibit=> { %>
+                        <div class="card">
+                          <h3>
+                            <%= exhibit.name %>
+                          </h3>
+                          <p>
+                            <%= exhibit.description %>
+                          </p>
+                        </div>
+                        <% }) %>
+                    </div>
+                  </section>
+                  <% } %>
+          </div>
+    </main>
+
+    <%- include('../partials/footer') %>

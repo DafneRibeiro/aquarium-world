@@ -1,0 +1,25 @@
+<%- include('partials/head', { pageTitle: 'Journal' , pageStyles: 'journal.css' }) %>
+  <%- include('partials/header') %>
+
+    <main class="journal">
+      <h1>Aquarium World Journal</h1>
+      <% posts.forEach(post=> { %>
+        <article class="card journal__post">
+          <h2>
+            <%= post.title %>
+          </h2>
+          <p class="journal__date">
+            <%= post.published_date %>
+              <% if (post.zone_name) { %> &middot; <a href="/zones/<%= post.zone_slug %>">
+                  <%= post.zone_name %>
+                </a>
+                <% } %>
+          </p>
+          <p>
+            <%= post.body %>
+          </p>
+        </article>
+        <% }) %>
+    </main>
+
+    <%- include('partials/footer') %>

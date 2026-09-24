@@ -1,0 +1,36 @@
+.zone {
+	position: relative;
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	padding: var(--space-xl) var(--space-lg);
+	color: var(--color-text-light);
+}
+
+.zone__tint {
+	position: absolute;
+	inset: 0;
+	background: rgba(11, 29, 46, 0.6);
+	z-index: 0;
+}
+
+.zone__content {
+	position: relative;
+	z-index: 1;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.zone__tagline {
+	color: var(--color-cyan-glow);
+	font-size: 1.25rem;
+}
+
+.zone__credit {
+	font-size: 0.75rem;
+	opacity: 0.7;
+}
+
+.zone__exhibits .zones-preview {
+	margin-top: var(--space-md);
+}
