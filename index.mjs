@@ -14,7 +14,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes for the application
 app.get('/', (req, res) => {
-	const zones = [{ name: 'Coral Reef Zone' }, { name: 'Deep Sea Trench' }, { name: 'Coastal Rockpools' }, { name: 'Freshwater Rivers & Rainforest' }];
+	const zones = [
+		{ slug: 'coral-reef', name: 'Coral Reef Zone', tagline: 'Colour, right up close.' },
+		{ slug: 'deep-sea-trench', name: 'Deep Sea Trench', tagline: 'Where the light gives up.' },
+		{ slug: 'coastal-rockpools', name: 'Coastal Rockpools', tagline: 'Small pools, big surprises.' },
+		{ slug: 'freshwater-rivers-rainforest', name: 'Freshwater Rivers & Rainforest', tagline: 'Not all wonders are salty.' }
+	];
 	res.render('home', { zones });
 });
 // Define route for individual zones based on slug

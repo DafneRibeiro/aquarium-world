@@ -1,18 +1,38 @@
 <%# Home page template displaying a list of aquarium zones %>
   <%# Loops through the zones array (from index.mjs) and displays each zone's name in a list item %>
 
-    <%- include('partials/head', { pageTitle: 'Home' }) %>
+    <%- include('partials/head', { pageTitle: 'Home' , pageStyles: 'home.css' }) %>
       <%- include('partials/header') %>
 
+        <section class="hero" id="hero" style="background-image: url('/assets/pexels-airamdphoto-9408375.jpg');">
+          <div class="hero__tint"></div>
+          <canvas id="hero-canvas" class="hero__canvas"></canvas>
+          <div class="hero__glass">
+            <h1 class="hero__title">Aquarium World</h1>
+            <p class="hero__tagline">Dive deeper than you imagined.</p>
+            <a href="#zones" class="btn">Explore the zones</a>
+            <label class="hero__toggle">
+              <input type="checkbox" id="motion-toggle">
+              Enable bubble effect
+            </label>
+          </div>
+        </section>
+
         <main>
-          <%# Loops through the zones array (from index.mjs) and displays each zone's name in a list item %>
-            <ul>
-              <% zones.forEach(zone=> { %>
-                <li>
+          <section id="zones" class="zones-preview">
+            <% zones.forEach(zone=> { %>
+              <div class="card">
+                <h2>
                   <%= zone.name %>
-                </li>
-                <% }) %>
-            </ul>
+                </h2>
+                <p>
+                  <%= zone.tagline %>
+                </p>
+                <a href="/zones/<%= zone.slug %>" class="btn">Visit this zone</a>
+              </div>
+              <% }) %>
+          </section>
         </main>
 
+        <script src="/js/hero-effect.js"></script>
         <%- include('partials/footer') %>
