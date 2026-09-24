@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="430" fill="#ffffff"/>
+  <text x="20" y="25" font-size="18" font-weight="bold" fill="#0b1d2e">Aquarium World — Entity Relationship Diagram</text>
+  <text x="20" y="42" font-size="11" fill="#555">SQLite schema — database/schema.sql</text>
+
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#1b4b5a"/>
+  </marker>
+
+  <!-- zones -->
+  <rect x="30" y="50" width="230" height="200" rx="6" fill="#f4f9fa" stroke="#1b4b5a" stroke-width="1.5"/>
+  <text x="145" y="72" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b1d2e">zones</text>
+  <line x1="30" y1="82" x2="260" y2="82" stroke="#1b4b5a"/>
+  <text x="42" y="100" font-size="12">id INTEGER (PK)</text>
+  <text x="42" y="118" font-size="12">slug TEXT UNIQUE NOT NULL</text>
+  <text x="42" y="136" font-size="12">name TEXT NOT NULL</text>
+  <text x="42" y="154" font-size="12">tagline TEXT</text>
+  <text x="42" y="172" font-size="12">description TEXT</text>
+  <text x="42" y="190" font-size="12">hero_image TEXT</text>
+  <text x="42" y="208" font-size="12">role TEXT</text>
+  <text x="42" y="226" font-size="12">conservation_note TEXT</text>
+
+  <!-- exhibits -->
+  <rect x="350" y="50" width="220" height="150" rx="6" fill="#f4f9fa" stroke="#1b4b5a" stroke-width="1.5"/>
+  <text x="460" y="72" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b1d2e">exhibits</text>
+  <line x1="350" y1="82" x2="570" y2="82" stroke="#1b4b5a"/>
+  <text x="362" y="100" font-size="12">id INTEGER (PK)</text>
+  <text x="362" y="118" font-size="12">zone_id INTEGER (FK → zones.id)</text>
+  <text x="362" y="136" font-size="12">name TEXT NOT NULL</text>
+  <text x="362" y="154" font-size="12">description TEXT</text>
+  <text x="362" y="172" font-size="12">image TEXT</text>
+  <text x="362" y="190" font-size="12">type TEXT</text>
+
+  <!-- journal_posts -->
+  <rect x="350" y="230" width="220" height="130" rx="6" fill="#f4f9fa" stroke="#1b4b5a" stroke-width="1.5"/>
+  <text x="460" y="252" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b1d2e">journal_posts</text>
+  <line x1="350" y1="262" x2="570" y2="262" stroke="#1b4b5a"/>
+  <text x="362" y="280" font-size="12">id INTEGER (PK)</text>
+  <text x="362" y="298" font-size="12">title TEXT NOT NULL</text>
+  <text x="362" y="316" font-size="12">body TEXT NOT NULL</text>
+  <text x="362" y="334" font-size="12">published_date TEXT NOT NULL</text>
+  <text x="362" y="352" font-size="12">zone_id INTEGER (FK → zones.id, nullable)</text>
+
+  <!-- contact_messages -->
+  <rect x="630" y="50" width="240" height="130" rx="6" fill="#f4f9fa" stroke="#1b4b5a" stroke-width="1.5"/>
+  <text x="750" y="72" font-size="14" font-weight="bold" text-anchor="middle" fill="#0b1d2e">contact_messages</text>
+  <line x1="630" y1="82" x2="870" y2="82" stroke="#1b4b5a"/>
+  <text x="642" y="100" font-size="12">id INTEGER (PK)</text>
+  <text x="642" y="118" font-size="12">name TEXT NOT NULL</text>
+  <text x="642" y="136" font-size="12">email TEXT NOT NULL</text>
+  <text x="642" y="154" font-size="12">message TEXT NOT NULL</text>
+  <text x="642" y="172" font-size="12">submitted_at TEXT NOT NULL</text>
+
+  <!-- events (planned) -->
+  <rect x="630" y="230" width="240" height="170" rx="6" fill="#fbf7f0" stroke="#c98a3e" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="750" y="252" font-size="14" font-weight="bold" text-anchor="middle" fill="#7a4a10">events (planned — Phase 10 stretch)</text>
+  <line x1="630" y1="262" x2="870" y2="262" stroke="#c98a3e" stroke-dasharray="5,4"/>
+  <text x="642" y="280" font-size="12">id INTEGER (PK)</text>
+  <text x="642" y="298" font-size="12">title TEXT NOT NULL</text>
+  <text x="642" y="316" font-size="12">slug TEXT UNIQUE NOT NULL</text>
+  <text x="642" y="334" font-size="12">description TEXT</text>
+  <text x="642" y="352" font-size="12">category TEXT</text>
+  <text x="642" y="370" font-size="12">event_date TEXT NOT NULL</text>
+  <text x="642" y="388" font-size="12">image TEXT</text>
+
+  <!-- relationships -->
+  <line x1="260" y1="125" x2="348" y2="125" stroke="#1b4b5a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="270" y="118" font-size="11" fill="#1b4b5a">1 — N</text>
+
+  <line x1="260" y1="190" x2="348" y2="295" stroke="#1b4b5a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="265" y="245" font-size="11" fill="#1b4b5a">1 — N (nullable)</text>
+
+  <!-- legend -->
+  <text x="20" y="415" font-size="11" fill="#555">PK = Primary Key   FK = Foreign Key   Dashed box = table sketched now, built in Phase 10 (not yet in seed.mjs)</text>
+</svg>
