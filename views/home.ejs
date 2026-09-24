@@ -1,0 +1,11 @@
+<%# Home page template displaying a list of aquarium zones %>
+  <%# Loops through the zones array (from index.mjs) and displays each zone's name in a list item %>
+
+    <ul>
+      <% zones.forEach(zone=> { %>
+        <li>
+          <%= zone.name %>
+            <%# outputs the zone name, HTML-escaped %>
+        </li>
+        <% }) %>
+    </ul>
