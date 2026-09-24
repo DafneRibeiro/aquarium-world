@@ -15,6 +15,7 @@ const db = new sqlite3.Database(path.join(__dirname, 'database', 'aquarium.db'))
 // Initialize the Express application
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 
 // Define routes for the application
 app.get('/', (req, res) => {
@@ -88,6 +89,76 @@ app.get('/journal', (req, res) => {
 		}
 		res.render('journal', { posts });
 	});
+});
+
+// Practical, neutral-tone FAQ content. No booking/ticket language anywhere, by design.
+const faqs = [
+	{
+		question: 'Is there parking on site?',
+		answer: 'Yes. Our car park is on site with designated accessible bays close to the main entrance, and clear signage from the road.'
+	},
+	{
+		question: 'Is Aquarium World accessible for wheelchairs and prams?',
+		answer: 'Yes. All main routes are step-free, with lifts between floors, accessible toilets on every level, and space throughout for wheelchairs and prams to move comfortably.'
+	},
+	{
+		question: 'Can I bring food and drink, or is there somewhere to eat?',
+		answer: 'There is a café on site serving hot and cold food and drink. You are also welcome to bring your own food to eat in our designated picnic area.'
+	},
+	{
+		question: 'How long should I allow for a visit?',
+		answer: 'Most families spend between two and three hours exploring all four zones, though you are welcome to move at your own pace and revisit any area.'
+	},
+	{
+		question: 'Can I take photographs during my visit?',
+		answer: 'Personal photography is welcome throughout. We ask that flash photography is avoided in the Deep Sea Trench, as the light-sensitive species there rely on near-total darkness.'
+	},
+	{
+		question: 'Are pushchairs or wheelchairs available to borrow?',
+		answer: 'A small number of pushchairs and wheelchairs are available at the main entrance, offered on a first-come basis to visitors who need one.'
+	}
+];
+
+app.get('/faq', (req, res) => {
+	res.render('faq', { faqs });
+});
+
+// Simple email format check shared between the contact form's client-side and server-side validation
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+app.get('/contact', (req, res) => {
+	res.render('contact', { submitted: false, error: null, values: { name: '', email: '', message: '' } });
+});
+
+app.post('/contact', (req, res) => {
+	const name = (req.body.name || '').trim();
+	const email = (req.body.email || '').trim();
+	const message = (req.body.message || '').trim().slice(0, 1000);
+
+	// Server-side validation — never trust the client alone, even though the form already validates in JS
+	if (!name || !email || !message || !EMAIL_PATTERN.test(email)) {
+		return res.status(400).render('contact', {
+			submitted: false,
+			error: 'Please fill in every field with a valid email address before sending.',
+			values: { name, email, message }
+		});
+	}
+
+	db.run(
+		'INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)',
+		[name, email, message],
+		(err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('Something went wrong sending your message.');
+			}
+			res.render('contact', {
+				submitted: true,
+				error: null,
+				values: { name: '', email: '', message: '' }
+			});
+		}
+	);
 });
 
 // Start the server and listen on port 5000

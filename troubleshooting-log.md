@@ -45,3 +45,14 @@ A running record of technical issues hit during development and how each was res
 ---
 
 *This log is a personal working reference, not a polished writeup. Entries can be adapted into the supporting documentation as needed — #5 in particular shows a structured debugging process (checking the DOM, then the network layer, then ruling out the browser entirely) that may be useful evidence of problem-solving, and every entry here involved AI assistance in diagnosing and/or resolving the issue, which is relevant to the AI-tool-usage transparency section.*
+
+---
+
+## 6. Git: commits silently failing ("no changes" despite staging/committing)
+**Phase:** Zone pages / Journal (Phase 5)
+**Symptoms:** Staged and "committed" changes in the Source Control panel, but `git log` and `git status` showed nothing had actually landed — no error appeared to explain why.
+**Investigation steps:**
+  1. Ran `git status` directly in the terminal instead of trusting the VS Code UI — it surfaced a warning: `unable to unlink '.git/index.lock': Operation not permitted`.
+  2. Confirmed the lock file (`.git/index.lock`) genuinely existed on disk and Git could not remove it, which blocks every subsequent `git add`/`git commit` with `fatal: Unable to create '.git/index.lock': File exists`.
+**Cause:** A previous git operation was interrupted before it could clean up its own lock file, leaving a stale `.git/index.lock` behind.
+**Fix:** Deleted the stale `.git/index.lock` file directly, then re-ran `git status` to confirm Git was unblocked. Re-staged and committed the zone-pages/Journal work successfully afterwards.
