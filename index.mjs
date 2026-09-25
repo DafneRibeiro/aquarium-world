@@ -161,6 +161,10 @@ app.post('/contact', (req, res) => {
 	);
 });
 
+app.get('/tide-table', (req, res) => {
+	res.render('tide-table');
+});
+
 // Start the server and listen on port 5000
 app.listen(5000, () => {
 	console.log('Aquarium World running at http://localhost:5000');

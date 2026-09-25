@@ -1,0 +1,54 @@
+<%- include('partials/head', { pageTitle: 'The Tide Table', pageStyles: 'tide-table.css' }) %>
+<%- include('partials/header') %>
+
+<main class="tide-table" data-tide="low">
+	<h1>The Tide Table</h1>
+	<p class="tide-table__intro">Our Coastal Rockpools exhibit in miniature. The same four residents look and behave differently depending on whether the tide is out or in — switch between them below and see why.</p>
+
+	<div class="tide-toggle" role="group" aria-label="Choose the tide">
+		<button type="button" class="tide-toggle__btn is-active" data-tide-select="low" aria-pressed="true">Low tide</button>
+		<button type="button" class="tide-toggle__btn" data-tide-select="high" aria-pressed="false">High tide</button>
+	</div>
+
+	<div class="rockpool-scene">
+		<article class="creature" data-creature="anemone">
+			<div class="creature__icon creature__icon--anemone" aria-hidden="true"></div>
+			<h2>Beadlet Anemone</h2>
+			<p class="creature__caption"
+				data-low="Closed into a jelly-like red blob, sealed tight to stop it drying out until the water returns."
+				data-high="Tentacles open and waving gently, catching tiny drifting food carried in on the tide.">Closed into a jelly-like red blob, sealed tight to stop it drying out until the water returns.</p>
+		</article>
+
+		<article class="creature" data-creature="starfish">
+			<div class="creature__icon creature__icon--starfish" aria-hidden="true"></div>
+			<h2>Common Starfish</h2>
+			<p class="creature__caption"
+				data-low="Tucked into a damp crevice, sheltering from the sun and from hungry gulls overhead."
+				data-high="Gliding slowly across the rock on hundreds of tiny tube feet, hunting for mussels.">Tucked into a damp crevice, sheltering from the sun and from hungry gulls overhead.</p>
+		</article>
+
+		<article class="creature" data-creature="crab">
+			<div class="creature__icon creature__icon--crab" aria-hidden="true"></div>
+			<h2>Shore Crab</h2>
+			<p class="creature__caption"
+				data-low="Wedged under a rock ledge, staying moist and out of sight from predators until the water rises."
+				data-high="Scuttling openly across the pool floor, foraging for scraps swept in by the tide.">Wedged under a rock ledge, staying moist and out of sight from predators until the water rises.</p>
+		</article>
+
+		<article class="creature" data-creature="limpet">
+			<div class="creature__icon creature__icon--limpet" aria-hidden="true"></div>
+			<h2>Limpet</h2>
+			<p class="creature__caption"
+				data-low="Clamped down tight against the rock, sealed shut so it can't dry out in the open air."
+				data-high="Grazing slowly across the rock surface, rasping at algae with its tongue-like radula.">Clamped down tight against the rock, sealed shut so it can't dry out in the open air.</p>
+		</article>
+	</div>
+
+	<section class="tide-table__note">
+		<h2>Conservation note</h2>
+		<p>Rockpool ecosystems are surprisingly fragile — a single misplaced footstep can destroy years of slow-growing life. Every creature here has its own way of surviving the twice-daily switch between air and water; that's part of why our real touch pools are always keeper-supervised.</p>
+	</section>
+</main>
+
+<script src="/js/tide-table.js"></script>
+<%- include('partials/footer') %>

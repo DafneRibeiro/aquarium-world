@@ -26,6 +26,10 @@
                   </p>
                 </section>
 
+                <% if (zone.slug === 'coastal-rockpools') { %>
+                  <p><a href="/tide-table" class="btn">Try The Tide Table</a></p>
+                <% } %>
+
                 <% if (exhibits.length> 0) { %>
                   <section class="zone__exhibits">
                     <h2>Exhibits</h2>
