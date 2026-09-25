@@ -48,3 +48,14 @@
 	margin-top: var(--space-sm);
 	margin-bottom: 0;
 }
+
+/* --- Responsive: mobile --- */
+@media (max-width: 600px) {
+	.faq {
+		padding: var(--space-md);
+	}
+
+	.faq__item {
+		padding: var(--space-sm) var(--space-md);
+	}
+}

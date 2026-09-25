@@ -93,3 +93,27 @@ a:focus {
 .zone--surprising {
 	background-image: linear-gradient(135deg, var(--color-teal), var(--color-cyan-glow));
 }
+
+/* --- Responsive: tablet and mobile --- */
+@media (max-width: 900px) {
+	.site-nav {
+		padding: var(--space-sm) var(--space-md);
+	}
+}
+
+@media (max-width: 600px) {
+	.opening-times {
+		font-size: 0.8rem;
+	}
+
+	.site-nav {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-sm);
+	}
+
+	.site-nav__links {
+		gap: var(--space-sm) var(--space-md);
+		font-size: 0.85rem;
+	}
+}

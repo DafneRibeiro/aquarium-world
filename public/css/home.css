@@ -61,11 +61,50 @@
 	padding: var(--space-xl) var(--space-lg);
 }
 
-// Zone card image styling
+/* Zone card image styling */
 .zone-card__image {
 	height: 160px;
 	border-radius: var(--radius);
 	background-size: cover;
 	background-position: center;
 	margin-bottom: var(--space-md);
+}
+
+/* --- Responsive: tablet and mobile --- */
+@media (max-width: 900px) {
+	.hero__title {
+		font-size: 2rem;
+	}
+
+	.hero__tagline {
+		font-size: 1.1rem;
+	}
+
+	.hero__glass {
+		padding: var(--space-lg) var(--space-md);
+		max-width: 90%;
+	}
+}
+
+@media (max-width: 600px) {
+	.hero {
+		min-height: 70vh;
+	}
+
+	.hero__title {
+		font-size: 1.6rem;
+	}
+
+	.hero__tagline {
+		font-size: 1rem;
+	}
+
+	.hero__subtext {
+		font-size: 0.9rem;
+	}
+
+	.zones-preview {
+		padding: var(--space-lg) var(--space-md);
+		gap: var(--space-md);
+	}
 }

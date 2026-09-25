@@ -34,3 +34,20 @@
 .zone__exhibits .zones-preview {
 	margin-top: var(--space-md);
 }
+
+/* --- Responsive: tablet and mobile --- */
+@media (max-width: 900px) {
+	.zone {
+		padding: var(--space-lg) var(--space-md);
+	}
+}
+
+@media (max-width: 600px) {
+	.zone__content h1 {
+		font-size: 1.6rem;
+	}
+
+	.zone__tagline {
+		font-size: 1rem;
+	}
+}
