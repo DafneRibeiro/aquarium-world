@@ -150,7 +150,13 @@ app.post('/contact', (req, res) => {
 		(err) => {
 			if (err) {
 				console.error(err);
-				return res.status(500).send('Something went wrong sending your message.');
+				// TEMP: showing err.message here to diagnose a live bug — replace with a generic
+				// message before hand-in, once the cause is confirmed fixed.
+				return res.status(500).render('contact', {
+					submitted: false,
+					error: `Something went wrong sending your message. (${err.message})`,
+					values: { name, email, message }
+				});
 			}
 			res.render('contact', {
 				submitted: true,
