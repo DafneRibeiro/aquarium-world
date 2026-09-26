@@ -37,13 +37,13 @@ db.serialize(() => {
 		'deep-sea-trench',
 		'Deep Sea Trench',
 		'Where the light gives up.',
-		'Descend into near-darkness, lit only by the creatures themselves. The Deep Sea Trench recreates the pressure and stillness of waters most people will never see.',
+		"Descend into near-darkness, lit only by the creatures themselves. The Deep Sea Trench recreates the pressure and stillness of waters most people will never see — a world several hundred metres down, where sunlight never reaches and every scrap of light has to be made by something alive. Down here, colour stops mattering: almost everything is black, red or transparent, since those are the first wavelengths to disappear from sunlight and the hardest for a predator to spot. What replaces colour is light itself — used as a lure, a burglar alarm, a search light, or a disguise, depending on which animal is switching it on.",
 		'jellyfish_blue_underwater_956608_3840x2160.jpg',
 		'Photo: ume-y (Flickr), used under CC BY.',
 		'atmosphere',
-		"Bioluminescence isn't decoration — it's survival. Many deep-sea species use their own light to hunt, hide, or communicate in a world with no sunlight at all.",
-		null,
-		null
+		"Bioluminescence isn't decoration — it's survival. Many deep-sea species use their own light to hunt, hide, or communicate in a world with no sunlight at all. These habitats are also some of the least explored on the planet: scientists estimate more of the deep sea remains unmapped than the surface of Mars, which makes protecting it while we still understand so little of it especially difficult.",
+		"An estimated 90% of deep-sea animals can produce their own light in some form — bioluminescence is thought to be the most common form of communication on the planet, even though almost no one ever sees it happen.",
+		'Simulated depth:600 metres|Water temperature:4°C|Sunlight reaching this depth:0%'
 	);
 
 	insertZone.run(
@@ -93,8 +93,22 @@ db.serialize(() => {
 		'Photo: Triniti14045, Wikimedia Commons (CC BY-SA 4.0).',
 		'display'
 	);
-	insertExhibit.run(2, 'The Glow Corridor', 'A darkened walkway lined with bioluminescent species.', null, null, 'display');
-	insertExhibit.run(2, 'Anglerfish Chamber', "Home to one of the ocean's most recognisable deep-sea hunters.", null, null, 'display');
+	insertExhibit.run(
+		2,
+		'The Glow Corridor',
+		"A darkened walkway lined with bioluminescent species, each one making its own light rather than reflecting anyone else's. Look closely at the photophores along a hatchetfish's belly and you'll see why: matching the faint blue glow of sunlight filtering down from above is what keeps it hidden from whatever might be hunting below.",
+		'zones/deep-sea-glow-corridor.jpg',
+		'Photo: HulloThere, Wikimedia Commons (CC BY 4.0).',
+		'display'
+	);
+	insertExhibit.run(
+		2,
+		'Anglerfish Chamber',
+		"Home to a museum-quality specimen of one of the ocean's most recognisable deep-sea hunters, its glowing lure dangled like bait above a mouth full of needle-thin teeth. No aquarium in the world keeps a live deep-sea anglerfish on display — brought up from the crushing pressure it lives at, the change alone would kill it long before it reached the surface.",
+		'zones/deep-sea-anglerfish-chamber.jpg',
+		'Photo: Canley, Wikimedia Commons (CC BY-SA 3.0).',
+		'display'
+	);
 	insertExhibit.run(3, 'Touch Pool', 'Hands-on access to starfish, anemones and hermit crabs, keeper-supervised.', null, null, 'interactive');
 	insertExhibit.run(3, 'Tide Table', 'An interactive display showing how rockpool life changes with the tide.', null, null, 'interactive');
 	insertExhibit.run(4, 'Piranha Shoal', 'A fast-moving shoal in a recreated Amazon tributary.', null, null, 'display');
