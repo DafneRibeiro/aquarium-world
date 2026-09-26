@@ -95,8 +95,26 @@
 }
 
 .zone__exhibits .zones-preview {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: var(--space-lg);
 	margin-top: var(--space-md);
 	padding: 0;
+}
+
+/* Exhibit cards float over the same photo background as the hero, so they get
+   the same frosted-glass treatment as .zone__glass instead of the plain solid
+   .card background used elsewhere on the site (FAQ, homepage zone list, etc). */
+.exhibit-card {
+	background: rgba(18, 40, 59, 0.4);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.exhibit-card h3 {
+	margin-top: 0;
 }
 
 .exhibit-card__image {
