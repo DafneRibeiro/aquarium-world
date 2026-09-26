@@ -5,17 +5,21 @@ CREATE TABLE zones (
   tagline           TEXT,
   description       TEXT,
   hero_image        TEXT,
+  hero_credit       TEXT,
   role              TEXT,
-  conservation_note TEXT
+  conservation_note TEXT,
+  fast_fact         TEXT,
+  stats             TEXT
 );
 
 CREATE TABLE exhibits (
-  id          INTEGER PRIMARY KEY,
-  zone_id     INTEGER NOT NULL REFERENCES zones(id),
-  name        TEXT NOT NULL,
-  description TEXT,
-  image       TEXT,
-  type        TEXT
+  id            INTEGER PRIMARY KEY,
+  zone_id       INTEGER NOT NULL REFERENCES zones(id),
+  name          TEXT NOT NULL,
+  description   TEXT,
+  image         TEXT,
+  image_credit  TEXT,
+  type          TEXT
 );
 
 CREATE TABLE journal_posts (

@@ -1,53 +1,69 @@
 <%- include('../partials/head', { pageTitle: zone.name, pageStyles: 'zone.css' }) %>
-  <%- include('../partials/header') %>
+<%- include('../partials/header') %>
 
-    <main class="zone zone--<%= zone.role %>" <% if (zone.hero_image) { %> style="background-image: url('/assets/<%=
-        zone.hero_image %>');"<% } %>>
-          <div class="zone__tint"></div>
-          <div class="zone__content">
-            <h1>
-              <%= zone.name %>
-            </h1>
-            <p class="zone__tagline">
-              <%= zone.tagline %>
-            </p>
-            <p>
-              <%= zone.description %>
-            </p>
+<main class="zone zone--<%= zone.role %>"<% if (zone.hero_image) { %> style="background-image: url('/assets/<%= zone.hero_image %>');"<% } %>>
+	<div class="zone__tint"></div>
+	<div class="zone__content">
+		<div class="zone__glass">
+			<h1><%= zone.name %></h1>
+			<p class="zone__tagline"><%= zone.tagline %></p>
 
-            <% if (zone.hero_image==='jellyfish_blue_underwater_956608_3840x2160.jpg' ) { %>
-              <p class="zone__credit">Photo: ume-y (Flickr), used under CC BY.</p>
-              <% } %>
+			<% if (zone.stats) { %>
+				<div class="zone__stats">
+					<% zone.stats.split('|').forEach(function (pair) {
+						const [label, value] = pair.split(':');
+					%>
+						<div class="zone__stat">
+							<span class="zone__stat-value"><%= value %></span>
+							<span class="zone__stat-label"><%= label %></span>
+						</div>
+					<% }); %>
+				</div>
+			<% } %>
 
-                <section>
-                  <h2>Conservation note</h2>
-                  <p>
-                    <%= zone.conservation_note %>
-                  </p>
-                </section>
+			<p><%= zone.description %></p>
 
-                <% if (zone.slug === 'coastal-rockpools') { %>
-                  <p><a href="/tide-table" class="btn">Try The Tide Table</a></p>
-                <% } %>
+			<% if (zone.hero_credit) { %>
+				<p class="zone__credit"><%= zone.hero_credit %></p>
+			<% } %>
+		</div>
 
-                <% if (exhibits.length> 0) { %>
-                  <section class="zone__exhibits">
-                    <h2>Exhibits</h2>
-                    <div class="zones-preview">
-                      <% exhibits.forEach(exhibit=> { %>
-                        <div class="card">
-                          <h3>
-                            <%= exhibit.name %>
-                          </h3>
-                          <p>
-                            <%= exhibit.description %>
-                          </p>
-                        </div>
-                        <% }) %>
-                    </div>
-                  </section>
-                  <% } %>
-          </div>
-    </main>
+		<% if (zone.fast_fact) { %>
+			<section class="zone__fastfact">
+				<h2>Fast fact</h2>
+				<p><%= zone.fast_fact %></p>
+			</section>
+		<% } %>
 
-    <%- include('../partials/footer') %>
+		<section>
+			<h2>Conservation note</h2>
+			<p><%= zone.conservation_note %></p>
+		</section>
+
+		<% if (zone.slug === 'coastal-rockpools') { %>
+			<p><a href="/tide-table" class="btn">Try The Tide Table</a></p>
+		<% } %>
+
+		<% if (exhibits.length > 0) { %>
+			<section class="zone__exhibits">
+				<h2>Exhibits</h2>
+				<div class="zones-preview">
+					<% exhibits.forEach(function (exhibit) { %>
+						<article class="card exhibit-card">
+							<% if (exhibit.image) { %>
+								<div class="exhibit-card__image" style="background-image: url('/assets/<%= exhibit.image %>');" role="img" aria-label="<%= exhibit.name %>"></div>
+							<% } %>
+							<h3><%= exhibit.name %></h3>
+							<p><%= exhibit.description %></p>
+							<% if (exhibit.image_credit) { %>
+								<p class="zone__credit"><%= exhibit.image_credit %></p>
+							<% } %>
+						</article>
+					<% }); %>
+				</div>
+			</section>
+		<% } %>
+	</div>
+</main>
+
+<%- include('../partials/footer') %>
