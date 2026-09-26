@@ -27,7 +27,9 @@ CREATE TABLE journal_posts (
   title          TEXT NOT NULL,
   body           TEXT NOT NULL,
   published_date TEXT NOT NULL,
-  zone_id        INTEGER REFERENCES zones(id)
+  zone_id        INTEGER REFERENCES zones(id),
+  image          TEXT,
+  image_credit   TEXT
 );
 
 CREATE TABLE contact_messages (

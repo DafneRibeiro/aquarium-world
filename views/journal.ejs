@@ -3,8 +3,12 @@
 
     <main class="journal">
       <h1>Aquarium World Journal</h1>
+      <p class="journal__intro">Field notes, small wins and the occasional myth-busting, straight from the teams behind each zone.</p>
       <% posts.forEach(post=> { %>
         <article class="card journal__post">
+          <% if (post.image) { %>
+            <img class="journal__post-image" src="/assets/<%= post.image %>" alt="<%= post.zone_name ? post.zone_name + ' — ' : '' %><%= post.title %>">
+          <% } %>
           <h2>
             <%= post.title %>
           </h2>
@@ -18,6 +22,9 @@
           <p>
             <%= post.body %>
           </p>
+          <% if (post.image_credit) { %>
+            <p class="journal__credit"><%= post.image_credit %></p>
+          <% } %>
         </article>
         <% }) %>
     </main>

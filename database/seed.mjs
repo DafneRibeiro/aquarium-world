@@ -144,24 +144,38 @@ db.serialize(() => {
 	insertExhibit.finalize();
 
 	// --- Journal posts ---
-	const insertPost = db.prepare('INSERT INTO journal_posts (title, body, published_date, zone_id) VALUES (?, ?, ?, ?)');
+	const insertPost = db.prepare('INSERT INTO journal_posts (title, body, published_date, zone_id, image, image_credit) VALUES (?, ?, ?, ?, ?, ?)');
 	insertPost.run(
 		'Notes from the reef tank',
-		'This month, our reef team recorded the first successful coral fragment attachment of the year — a small win that matters more than it sounds.',
+		"This month, our reef team recorded the first successful coral fragment attachment of the year — a small win that matters more than it sounds. Fragmenting is exactly what it sounds like: taking a healthy piece of an existing coral colony and giving it a fresh surface to grow on, the same way a gardener takes a cutting. It sounds simple until you've watched how easily a fragment can die in the first 48 hours if the water chemistry drifts even slightly. Ours held. The new colony won't look like much for a year or two, but every polyp on that reef wall started exactly this way — as someone's careful, unglamorous fragment.",
 		'2026-08-15',
-		1
+		1,
+		'zones/coral-reef-reef-wall.jpg',
+		'Photo: Jim E. Maragos, U.S. Fish and Wildlife Service (Public Domain).'
 	);
 	insertPost.run(
 		'Why we keep the trench dark',
-		'Visitors often ask why the Deep Sea Trench is kept so dim. The answer: light stress affects deep-sea species far more than shallow-water ones.',
+		"Visitors often ask why the Deep Sea Trench is kept so dim. The honest answer: light stress affects deep-sea species far more than shallow-water ones. Down in the real trench, sunlight never reaches at all — most of what lives there has spent millions of years adapting eyes, or giving up on eyes entirely, for a world lit only by the creatures that make their own light. Bring that up into a brightly lit tank and you're not just making it uncomfortable; a fish built for total darkness can show measurable stress responses at light levels a shallow-reef species would barely register. So the trench stays dark, the way we keep the reef tank warm and the rockpools cold — not for atmosphere, but because that's what the animals actually need.",
 		'2026-08-22',
-		2
+		2,
+		'zones/deep-sea-glow-corridor.jpg',
+		'Photo: HulloThere, Wikimedia Commons (CC BY 4.0).'
 	);
 	insertPost.run(
 		'A quieter kind of conservation',
-		"Not every conservation story is dramatic. Sometimes it's just choosing the right substrate for a rockpool tank, season after season.",
+		"Not every conservation story is dramatic. Sometimes it's just choosing the right substrate for a rockpool tank, season after season. This spring we swapped the gravel bed in the Touch Pool for a coarser mix closer to what you'd find on a real rocky shore — better drainage, fewer places for waste to settle, and crucially, something a hermit crab can actually dig into. It's not the kind of change anyone visiting for an afternoon would notice. But get the substrate wrong and you slowly lose the small invertebrates that make a rockpool a rockpool, long before anything looks visibly wrong. Most of the job here is exactly this: unglamorous maintenance that only shows up as an absence of problems.",
 		'2026-09-01',
-		null
+		3,
+		'creatures/common-starfish.jpg',
+		'Photo: Hans Hillewaert, Wikimedia Commons (CC BY-SA 4.0).'
+	);
+	insertPost.run(
+		'The piranha myth we get asked about most',
+		"If there's one question our Piranha Shoal keepers hear more than any other, it's some version of 'do they attack in packs?' The honest answer is almost the opposite. Red-bellied piranhas shoal for the same reason a lot of prey animals group together — safety in numbers — not to coordinate an attack. A lone piranha is a nervous, vulnerable fish, far more likely to end up as someone else's meal than to go looking for trouble. The frenzied-attack reputation mostly comes from a handful of dramatic accounts from over a century ago, repeated so often they outran the actual biology. Ours spend most of the day doing exactly what nervous shoaling fish do everywhere: sticking close together and not drawing attention to themselves.",
+		'2026-09-18',
+		4,
+		'zones/freshwater-piranha-shoal.jpg',
+		'Photo: Gregory Moine, Wikimedia Commons (CC BY 2.0).'
 	);
 	insertPost.finalize();
 
