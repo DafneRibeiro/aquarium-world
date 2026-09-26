@@ -1,14 +1,15 @@
 // The Tide Table — Coastal Rockpools activity page.
-// Fully JS-driven: switching the tide updates the scene and every creature's
-// caption in place, with no page reload. The visual "open/closed" look of each
-// creature icon is driven by CSS reacting to the container's data-tide attribute;
-// this script only needs to flip that attribute and swap the caption text.
+// Fully JS-driven: switching the tide updates the scene, every creature's photo
+// treatment (via CSS reacting to the container's data-tide attribute), its status
+// badge, and its longer caption — all with no page reload. This script only needs
+// to flip that attribute and swap text on any element carrying both a data-low and
+// a data-high value (currently the status badge and the tide caption).
 document.addEventListener('DOMContentLoaded', function () {
 	const scene = document.querySelector('.tide-table');
 	if (!scene) return;
 
 	const buttons = scene.querySelectorAll('.tide-toggle__btn');
-	const captions = scene.querySelectorAll('.creature__caption');
+	const swappable = scene.querySelectorAll('[data-low][data-high]');
 
 	function setTide(tide) {
 		scene.dataset.tide = tide;
@@ -19,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 		});
 
-		captions.forEach(function (caption) {
-			const text = tide === 'high' ? caption.dataset.high : caption.dataset.low;
+		swappable.forEach(function (el) {
+			const text = tide === 'high' ? el.dataset.high : el.dataset.low;
 			if (text) {
-				caption.textContent = text;
+				el.textContent = text;
 			}
 		});
 	}

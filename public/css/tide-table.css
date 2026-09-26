@@ -1,5 +1,5 @@
 .tide-table {
-	max-width: 900px;
+	max-width: 1100px;
 	margin: 0 auto;
 	padding: var(--space-xl) var(--space-lg);
 }
@@ -35,7 +35,7 @@
 
 .rockpool-scene {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	gap: var(--space-lg);
 	margin-bottom: var(--space-xl);
 }
@@ -44,91 +44,78 @@
 	background-color: var(--color-deep-alt);
 	border: 1px solid var(--color-teal);
 	border-radius: var(--radius);
-	padding: var(--space-lg);
-	text-align: center;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
-.creature__icon {
-	width: 64px;
-	height: 64px;
-	margin: 0 auto var(--space-md);
-	transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
+.creature__photo {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	display: block;
+	/* The photo itself can't "open" and "close" like a rockpool creature does, so we
+	   fake the same sense of change the old CSS-only icons had: at low tide the photo
+	   reads muted and still (as if sealed up and waiting), at high tide it brightens
+	   and gains a faint glow (as if active and feeding). */
+	filter: brightness(0.75) saturate(0.75);
+	transition: filter 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* Beadlet Anemone: closes small and dim at low tide, opens wide and glowing at high tide */
-.creature__icon--anemone {
-	border-radius: 50%;
-	background-color: var(--color-warm-accent);
+[data-tide='high'] .creature__photo {
+	filter: brightness(1) saturate(1.05);
+	box-shadow: inset 0 -40px 40px -20px rgba(79, 216, 224, 0.25);
 }
 
-[data-tide='low'] .creature__icon--anemone {
-	transform: scale(0.55);
-	opacity: 0.65;
+.creature__body {
+	padding: var(--space-md) var(--space-lg) var(--space-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
 }
 
-[data-tide='high'] .creature__icon--anemone {
-	transform: scale(1);
-	opacity: 1;
-	box-shadow: 0 0 0 10px rgba(242, 161, 84, 0.15);
+.creature__heading {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--space-sm);
 }
 
-/* Common Starfish: dim and still at low tide, bright and turned at high tide as it moves across the rock */
-.creature__icon--starfish {
-	background-color: var(--color-cyan-glow);
-	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+.creature__heading h2 {
+	font-size: 1.15rem;
+	margin: 0;
 }
 
-[data-tide='low'] .creature__icon--starfish {
-	opacity: 0.5;
-	transform: scale(0.8) rotate(0deg);
-}
-
-[data-tide='high'] .creature__icon--starfish {
-	opacity: 1;
-	transform: scale(1) rotate(25deg);
-}
-
-/* Shore Crab: tucked low and half-hidden at low tide, sitting proud in the open at high tide */
-.creature__icon--crab {
-	width: 70px;
-	height: 46px;
+.creature__badge {
+	flex-shrink: 0;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	padding: 0.2rem 0.6rem;
+	border-radius: 999px;
 	background-color: var(--color-teal);
-	border-radius: 50% 50% 40% 40%;
+	color: var(--color-text-light);
+	transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-[data-tide='low'] .creature__icon--crab {
-	transform: translateY(14px);
-	opacity: 0.55;
+[data-tide='high'] .creature__badge {
+	background-color: var(--color-warm-accent);
+	color: var(--color-deep);
 }
 
-[data-tide='high'] .creature__icon--crab {
-	transform: translateY(0);
-	opacity: 1;
-}
-
-/* Limpet: clamped flat and dark at low tide, active and brighter at high tide */
-.creature__icon--limpet {
-	background-color: var(--color-cyan-glow);
-	clip-path: polygon(50% 10%, 85% 90%, 15% 90%);
-}
-
-[data-tide='low'] .creature__icon--limpet {
-	filter: brightness(0.6);
-	transform: scale(0.9);
-}
-
-[data-tide='high'] .creature__icon--limpet {
-	filter: brightness(1.1);
-	transform: scale(1);
-}
-
-.creature h2 {
-	font-size: 1.1rem;
-	margin: 0 0 var(--space-sm);
+.creature__about {
+	font-size: 0.9rem;
+	opacity: 0.85;
+	margin: 0;
 }
 
 .creature__caption {
 	font-size: 0.9rem;
+	font-style: italic;
+	margin: 0;
+	padding-top: var(--space-sm);
+	border-top: 1px dashed var(--color-teal);
 	min-height: 3.6em;
 }
 
@@ -139,6 +126,13 @@
 	border-radius: var(--radius);
 }
 
+/* --- Responsive: tablet --- */
+@media (max-width: 900px) {
+	.rockpool-scene {
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+}
+
 /* --- Responsive: mobile --- */
 @media (max-width: 600px) {
 	.tide-table {
@@ -147,5 +141,9 @@
 
 	.tide-toggle {
 		flex-direction: column;
+	}
+
+	.creature__photo {
+		height: 160px;
 	}
 }

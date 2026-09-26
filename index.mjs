@@ -161,8 +161,122 @@ app.post('/contact', (req, res) => {
 	);
 });
 
+// Coastal Rockpools "Tide Table" activity — 12 real rockpool residents, each with a
+// photo, a longer species description, and a pair of low-tide / high-tide captions
+// swapped client-side by tide-table.js. See content-sources.md for photo licensing.
+const creatures = [
+	{
+		slug: 'anemone',
+		name: 'Beadlet Anemone',
+		image: 'beadlet-anemone.jpg',
+		alt: 'A red beadlet anemone with tentacles open, photographed underwater',
+		about: 'One of the most common anemones on British shores, the beadlet anemone looks like a blob of red jelly when out of water but transforms into a crown of nearly 200 stinging tentacles once submerged. It can live for decades in the same spot, and gives birth to fully-formed young rather than laying eggs.',
+		low: 'Closed into a jelly-like red blob, sealed tight to stop it drying out until the water returns.',
+		high: 'Tentacles open and waving gently, catching tiny drifting food carried in on the tide.'
+	},
+	{
+		slug: 'starfish',
+		name: 'Common Starfish',
+		image: 'common-starfish.jpg',
+		alt: 'An orange-brown common starfish on a dark background',
+		about: "Britain's most familiar starfish, usually orange-brown with five stout arms. It has no brain and no blood — instead, seawater is pumped through a network of canals to power hundreds of tiny tube feet, which it also uses to prise open mussel shells before pushing its own stomach outside its body to digest them.",
+		low: 'Tucked into a damp crevice, sheltering from the sun and from hungry gulls overhead.',
+		high: 'Gliding slowly across the rock on hundreds of tiny tube feet, hunting for mussels.'
+	},
+	{
+		slug: 'crab',
+		name: 'Shore Crab',
+		image: 'shore-crab.jpg',
+		alt: 'A green-brown shore crab seen from above',
+		about: 'The commonest crab on European shores, able to survive in almost any rockpool condition, from full-strength seawater to nearly fresh, rain-diluted puddles. Shore crabs breathe using gills, but can hold a reservoir of water in their gill chambers, letting them stay out of a pool entirely for short spells.',
+		low: 'Wedged under a rock ledge, staying moist and out of sight from predators until the water rises.',
+		high: 'Scuttling openly across the pool floor, foraging for scraps swept in by the tide.'
+	},
+	{
+		slug: 'limpet',
+		name: 'Common Limpet',
+		image: 'common-limpet.jpg',
+		alt: 'A cone-shaped common limpet shell attached to bare rock',
+		about: 'A limpet spends its life grinding a shallow scar into "its" spot on the rock — a scar its shell fits perfectly, sealing out drying air at low tide. When covered, or under cover of night, it roams a short distance to graze algae before returning to that exact same scar, guided by a trail of its own mucus.',
+		low: "Clamped down tight against the rock, sealed shut so it can't dry out in the open air.",
+		high: 'Grazing slowly across the rock surface, rasping at algae with its tongue-like radula.'
+	},
+	{
+		slug: 'hermit-crab',
+		name: 'Hermit Crab',
+		image: 'hermit-crab.jpg',
+		alt: 'A hermit crab peeking out from its borrowed shell',
+		about: "Lacking a hard shell of its own over most of its body, the hermit crab borrows the empty shells of dead periwinkles and whelks, trading up for a bigger one as it grows. Rockpools are prime hunting ground for a free upgrade, and fights over a good shell between rival hermit crabs are common.",
+		low: 'Withdrawn deep into its borrowed shell, waiting out the exposed hours in the shade of a rock.',
+		high: "Shell tipped forward, tentatively testing the water at the pool's edge before venturing out to feed."
+	},
+	{
+		slug: 'sea-urchin',
+		name: 'Common Sea Urchin',
+		image: 'sea-urchin.jpg',
+		alt: 'A round sea urchin covered in short spines, seen from above',
+		about: "Britain's largest sea urchin, its round shell can grow to the size of a large orange and is normally hidden under a dense coat of purple-tipped spines. Hundreds of tiny suckered tube feet, poking out between the spines, let it grip rock firmly even in the strongest surge.",
+		low: 'Spines held close and tube feet retracted, staying still and conserving moisture in a shaded pool.',
+		high: 'Spines spread wide and tube feet reaching for the rock, slowly hauling itself across the pool in search of algae.'
+	},
+	{
+		slug: 'periwinkle',
+		name: 'Common Periwinkle',
+		image: 'common-periwinkle.jpg',
+		alt: 'A dark, spiral-shelled common periwinkle sea snail',
+		about: "This small spiral-shelled sea snail is one of Britain's most overlooked survivors, able to close a trapdoor-like plate over its shell opening to seal in moisture for days at a time if needed. Periwinkles were also once a major seaside food, sold from paper cones on Victorian promenades.",
+		low: 'Trapdoor sealed shut, wedged into a damp crack to ride out the low tide.',
+		high: 'Shell tipped forward, gliding across algae-covered rock on a single muscular foot.'
+	},
+	{
+		slug: 'shanny',
+		name: 'Shanny',
+		image: 'shanny.jpg',
+		alt: 'A mottled brown shanny fish resting among rocks',
+		about: 'A small, sturdy blenny with a snub face and no scales, well adapted to life between the tides. Shannies can breathe air for a time and are famous among rockpoolers for their ability to survive being left in a shrinking, sun-warmed puddle for hours on end.',
+		low: 'Pressed flat under a stone, breathing air through its skin until the pool refills.',
+		high: 'Darting between weed fronds, snapping up small shrimp and barnacle larvae stirred up by the tide.'
+	},
+	{
+		slug: 'prawn',
+		name: 'Common Prawn',
+		image: 'common-prawn.jpg',
+		alt: 'A near-transparent common prawn with long antennae',
+		about: 'Almost completely transparent but for delicate banded markings, the common prawn is easy to miss until it flicks its tail and shoots backwards in a blur. Its long antennae, often twice the length of its body, feel out food and danger in murky, weed-choked water.',
+		low: 'Hovering motionless in the deepest, coolest part of the pool, near-invisible against the sandy bottom.',
+		high: 'Darting and hovering through the shallows, antennae sweeping for scraps carried in on the current.'
+	},
+	{
+		slug: 'mussel',
+		name: 'Common Mussel',
+		image: 'common-mussel.jpg',
+		alt: 'A cluster of dark blue-black common mussels on rock',
+		about: 'Mussels anchor themselves to rock, and to each other, with tough threads called byssus, spun on the spot from a gland in the foot, forming dense beds that shelter dozens of smaller species. A single mussel can filter several litres of seawater an hour, straining out plankton to eat.',
+		low: 'Shells clamped shut, byssus threads holding it fast to the rock as the pool drains around it.',
+		high: 'Shells gaping slightly open, feeding by filtering plankton from the passing water.'
+	},
+	{
+		slug: 'dog-whelk',
+		name: 'Dog Whelk',
+		image: 'dog-whelk.jpg',
+		alt: 'A spiral-shelled dog whelk resting on rock',
+		about: 'A predatory sea snail that drills a neat hole through the shells of barnacles and mussels using an acid-tipped tongue called a radula, then feeds on the contents. Dog whelks vary widely in shell colour depending on their diet, from off-white to deep purple-brown.',
+		low: 'Anchored beside an empty barnacle shell, resting after a long, slow meal.',
+		high: 'Gliding across a barnacle-crusted rock, radula extended, searching for its next meal.'
+	},
+	{
+		slug: 'barnacle',
+		name: 'Acorn Barnacle',
+		image: 'acorn-barnacle.jpg',
+		alt: 'Small volcano-shaped acorn barnacles crusting a rock surface',
+		about: 'What looks like a tiny volcano-shaped shell is in fact a crustacean lying on its back, permanently glued head-down to the rock by cement it produces itself. At low tide its plates snap shut to trap a single drop of seawater; underwater, feathery legs called cirri flick out through the top to filter food from the passing current.',
+		low: 'Plates clamped tightly shut, a single trapped drop of seawater keeping it alive until the tide turns.',
+		high: 'Plates open, feathery legs rhythmically flicking out to filter plankton from the water.'
+	}
+];
+
 app.get('/tide-table', (req, res) => {
-	res.render('tide-table');
+	res.render('tide-table', { creatures });
 });
 
 // Start the server and listen on port 5000
