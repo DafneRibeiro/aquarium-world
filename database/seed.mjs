@@ -50,13 +50,13 @@ db.serialize(() => {
 		'coastal-rockpools',
 		'Coastal Rockpools',
 		'Small pools, big surprises.',
-		'Roll up your sleeves. Our touch-pool zone is built for hands-on discovery, with keepers on hand to guide every visit.',
-		null,
-		null,
+		"Roll up your sleeves. Our touch-pool zone is built for hands-on discovery, with keepers on hand to guide every visit — the only part of Aquarium World where you're actively encouraged to get your hands wet. Everything living here has to survive twice a day: submerged at high tide, then exposed to sun, rain, gulls and drying air at low tide, which makes rockpool animals some of the toughest, most adaptable creatures in the sea. A starfish clamped to a rock here isn't resting — it's using hundreds of tiny suckered tube feet to grip on tight enough that a retreating wave can't sweep it away.",
+		'zones/coastal-rockpools-hero.jpg',
+		'Photo: Brocken Inaglory, Wikimedia Commons (CC BY-SA 4.0).',
 		'hands-on',
-		'Rockpool ecosystems are surprisingly fragile — a single misplaced footstep can destroy years of slow-growing life. Ours are a safe way to get close without the harm.',
-		null,
-		null
+		'Rockpool ecosystems are surprisingly fragile — a single misplaced footstep can destroy years of slow-growing life, and a bucket left in the sun for even a few minutes can overheat everything inside it. Ours are a safe way to get close without the harm: every creature in our touch pool is handled by a keeper first, and returned to deeper water the moment it shows any sign of stress.',
+		"A starfish has no brain and no blood — seawater is pumped through its body to power hundreds of tiny tube feet instead, and a lost arm can regrow over several months.",
+		'Touch pool residents:12 species|Water temperature:14–16°C|Tide cycle:every 6 hours'
 	);
 
 	insertZone.run(
@@ -109,8 +109,22 @@ db.serialize(() => {
 		'Photo: Canley, Wikimedia Commons (CC BY-SA 3.0).',
 		'display'
 	);
-	insertExhibit.run(3, 'Touch Pool', 'Hands-on access to starfish, anemones and hermit crabs, keeper-supervised.', null, null, 'interactive');
-	insertExhibit.run(3, 'Tide Table', 'An interactive display showing how rockpool life changes with the tide.', null, null, 'interactive');
+	insertExhibit.run(
+		3,
+		'Touch Pool',
+		"Hands-on access to starfish, anemones and hermit crabs, keeper-supervised. Every animal here is handled the same way our keepers would in the wild: wet hands only, a light touch, and never picked all the way out of the water — stress from careless handling is more dangerous to most rockpool life than the occasional gentle stroke.",
+		'creatures/common-starfish.jpg',
+		'Photo: Hans Hillewaert, Wikimedia Commons (CC BY-SA 4.0).',
+		'interactive'
+	);
+	insertExhibit.run(
+		3,
+		'Tide Table',
+		"An interactive display showing how rockpool life changes with the tide. All twelve residents look and behave completely differently depending on whether the water's in or out — see for yourself on our Tide Table, just through this door.",
+		'creatures/hermit-crab.jpg',
+		'Photo: Erics, Wikimedia Commons (CC BY-SA 4.0).',
+		'interactive'
+	);
 	insertExhibit.run(4, 'Piranha Shoal', 'A fast-moving shoal in a recreated Amazon tributary.', null, null, 'display');
 	insertExhibit.run(4, 'Canopy Drip Walk', 'Rainforest canopy sounds and mist above a river-level walkway.', null, null, 'display');
 	insertExhibit.finalize();
