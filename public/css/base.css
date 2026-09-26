@@ -117,3 +117,58 @@ a:focus {
 		font-size: 0.85rem;
 	}
 }
+
+/* --- Reusable photo banner for pages that aren't a single "zone" (Journal, The
+   Tide Table) but still want the same photographic, glassmorphic identity as the
+   homepage hero and the zone pages, instead of sitting on the flat body colour. --- */
+.page-hero {
+	position: relative;
+	min-height: 280px;
+	background-size: cover;
+	background-position: center;
+	border-radius: var(--radius);
+	overflow: hidden;
+	margin-bottom: var(--space-xl);
+	display: flex;
+	align-items: center;
+}
+
+.page-hero__tint {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(11, 29, 46, 0.35) 0%, rgba(11, 29, 46, 0.8) 100%);
+	z-index: 0;
+}
+
+.page-hero__glass {
+	position: relative;
+	z-index: 1;
+	background: rgba(18, 40, 59, 0.4);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: var(--radius);
+	padding: var(--space-lg);
+	margin: var(--space-lg);
+}
+
+.page-hero__glass h1 {
+	margin-top: 0;
+}
+
+.page-hero__credit {
+	font-size: 0.75rem;
+	opacity: 0.7;
+	margin: var(--space-sm) 0 0;
+}
+
+@media (max-width: 600px) {
+	.page-hero {
+		min-height: 220px;
+	}
+
+	.page-hero__glass {
+		padding: var(--space-md);
+		margin: var(--space-md);
+	}
+}

@@ -2,8 +2,14 @@
 <%- include('partials/header') %>
 
 <main class="tide-table" data-tide="low">
-	<h1>The Tide Table</h1>
-	<p class="tide-table__intro">Our Coastal Rockpools exhibit in miniature. Twelve real rockpool residents look and behave differently depending on whether the tide is out or in — switch between them below and see why.</p>
+	<div class="page-hero" style="background-image: url('/assets/zones/coastal-rockpools-hero.jpg');">
+		<div class="page-hero__tint"></div>
+		<div class="page-hero__glass">
+			<h1>The Tide Table</h1>
+			<p class="tide-table__intro">Our Coastal Rockpools exhibit in miniature. Twelve real rockpool residents look and behave differently depending on whether the tide is out or in — switch between them below and see why.</p>
+			<p class="page-hero__credit">Photo: Brocken Inaglory, Wikimedia Commons (CC BY-SA 4.0).</p>
+		</div>
+	</div>
 
 	<div class="tide-toggle" role="group" aria-label="Choose the tide">
 		<button type="button" class="tide-toggle__btn is-active" data-tide-select="low" aria-pressed="true">Low tide</button>

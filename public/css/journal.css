@@ -5,9 +5,8 @@
 }
 
 .journal__intro {
-	opacity: 0.8;
-	margin-top: calc(-1 * var(--space-sm));
-	margin-bottom: var(--space-lg);
+	opacity: 0.9;
+	margin-bottom: 0;
 }
 
 .journal__post {

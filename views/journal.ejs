@@ -2,8 +2,13 @@
   <%- include('partials/header') %>
 
     <main class="journal">
-      <h1>Aquarium World Journal</h1>
-      <p class="journal__intro">Field notes, small wins and the occasional myth-busting, straight from the teams behind each zone.</p>
+      <div class="page-hero" style="background-image: url('/assets/pexels-airamdphoto-9408375.jpg');">
+        <div class="page-hero__tint"></div>
+        <div class="page-hero__glass">
+          <h1>Aquarium World Journal</h1>
+          <p class="journal__intro">Field notes, small wins and the occasional myth-busting, straight from the teams behind each zone.</p>
+        </div>
+      </div>
       <% posts.forEach(post=> { %>
         <article class="card journal__post">
           <% if (post.image) { %>
