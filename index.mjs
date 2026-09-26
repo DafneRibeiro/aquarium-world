@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 			name: 'Coral Reef Zone',
 			tagline: 'Colour, right up close.',
 			role: 'showpiece',
-			image: null
+			image: 'zones/coral-reef-hero.jpg'
 		},
 		{
 			slug: 'deep-sea-trench',
@@ -39,14 +39,14 @@ app.get('/', (req, res) => {
 			name: 'Coastal Rockpools',
 			tagline: 'Small pools, big surprises.',
 			role: 'hands-on',
-			image: null
+			image: 'zones/coastal-rockpools-hero.jpg'
 		},
 		{
 			slug: 'freshwater-rivers-rainforest',
 			name: 'Freshwater Rivers & Rainforest',
 			tagline: 'Not all wonders are salty.',
 			role: 'surprising',
-			image: null
+			image: 'zones/freshwater-hero.jpg'
 		}
 	];
 	res.render('home', { zones });

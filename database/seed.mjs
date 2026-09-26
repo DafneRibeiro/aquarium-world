@@ -63,13 +63,13 @@ db.serialize(() => {
 		'freshwater-rivers-rainforest',
 		'Freshwater Rivers & Rainforest',
 		'Not all wonders are salty.',
-		'From piranha shoals to rainforest canopy drips, this zone proves freshwater habitats can be just as astonishing as anything in the sea.',
-		null,
-		null,
+		"From piranha shoals to rainforest canopy drips, this zone proves freshwater habitats can be just as astonishing as anything in the sea. Step through the door and the air itself changes — warmer, wetter, thick with the sound of dripping leaves and unseen insects. Less than 1% of the world's water is fresh, yet it holds an outsized share of everything that swims: rivers, floodplains and rainforest streams pack in a density of species that rivals any coral reef, all adapted to a world that floods, dries, and changes colour with the seasons.",
+		'zones/freshwater-hero.jpg',
+		'Photo: Jay, Wikimedia Commons (CC BY 2.0).',
 		'surprising',
-		"Freshwater habitats hold roughly half of all fish species on a tiny fraction of the planet's water — and they're disappearing faster than almost any other ecosystem type.",
-		null,
-		null
+		"Freshwater habitats hold roughly half of all fish species on a tiny fraction of the planet's water — and they're disappearing faster than almost any other ecosystem type, lost to dams, drainage and pollution more quickly than rainforests themselves. A river that looks unchanged on the surface can lose most of its fish within a generation if the water it depends on is diverted upstream.",
+		"The Amazon river system alone is home to more freshwater fish species than the whole Atlantic Ocean has marine fish species — and new ones are still being discovered every year.",
+		"Freshwater fish species worldwide:~18,000|Share of Earth's water that's fresh:<1%|Zone humidity:85%"
 	);
 	insertZone.finalize();
 
@@ -125,8 +125,22 @@ db.serialize(() => {
 		'Photo: Erics, Wikimedia Commons (CC BY-SA 4.0).',
 		'interactive'
 	);
-	insertExhibit.run(4, 'Piranha Shoal', 'A fast-moving shoal in a recreated Amazon tributary.', null, null, 'display');
-	insertExhibit.run(4, 'Canopy Drip Walk', 'Rainforest canopy sounds and mist above a river-level walkway.', null, null, 'display');
+	insertExhibit.run(
+		4,
+		'Piranha Shoal',
+		"A fast-moving shoal in a recreated Amazon tributary. Despite their fearsome reputation, red-bellied piranhas are nervous, social fish that shoal for safety rather than to hunt in packs — a lone piranha is a vulnerable piranha, far more likely to end up prey itself than predator.",
+		'zones/freshwater-piranha-shoal.jpg',
+		'Photo: Gregory Moine, Wikimedia Commons (CC BY 2.0).',
+		'display'
+	);
+	insertExhibit.run(
+		4,
+		'Canopy Drip Walk',
+		'Rainforest canopy sounds and mist above a river-level walkway. Real rainforest canopies generate their own weather: so much water evaporates from millions of leaves that the resulting moisture drives local rainfall, meaning a healthy rainforest can, in a very real sense, make its own rain.',
+		'zones/freshwater-canopy-walk.jpg',
+		'Photo: David Stanley, Wikimedia Commons (CC BY 2.0).',
+		'display'
+	);
 	insertExhibit.finalize();
 
 	// --- Journal posts ---
