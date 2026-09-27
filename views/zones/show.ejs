@@ -1,7 +1,7 @@
 <%- include('../partials/head', { pageTitle: zone.name, pageStyles: 'zone.css' }) %>
 <%- include('../partials/header') %>
 
-<main class="zone zone--<%= zone.role %>"<% if (zone.hero_image) { %> style="background-image: url('/assets/<%= zone.hero_image %>');"<% } %>>
+<main class="zone zone--<%= zone.role %>" id="main-content"<% if (zone.hero_image) { %> style="background-image: url('/assets/<%= zone.hero_image %>');"<% } %>>
 	<div class="zone__tint"></div>
 	<div class="zone__content">
 		<div class="zone__glass">

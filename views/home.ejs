@@ -4,7 +4,8 @@
     <%- include('partials/head', { pageTitle: 'Home' , pageStyles: 'home.css' }) %>
       <%- include('partials/header') %>
 
-        <section class="hero" id="hero" style="background-image: url('/assets/pexels-airamdphoto-9408375.jpg');">
+        <main id="main-content">
+          <section class="hero" id="hero" style="background-image: url('/assets/pexels-airamdphoto-9408375.jpg');">
           <div class="hero__tint"></div>
           <canvas id="hero-canvas" class="hero__canvas"></canvas>
           <div class="hero__glass">
@@ -21,7 +22,6 @@
           </div>
         </section>
 
-        <main>
           <section id="zones" class="zones-preview">
             <% zones.forEach(zone=> { %>
               <div class="card">
