@@ -179,6 +179,60 @@ db.serialize(() => {
 	);
 	insertPost.finalize();
 
+	// --- Events ("What's On") ---
+	const insertEvent = db.prepare(
+		'INSERT INTO events (title, slug, description, category, event_date, image) VALUES (?, ?, ?, ?, ?, ?)'
+	);
+	insertEvent.run(
+		'Sharks in the Dark',
+		'sharks-in-the-dark',
+		"A slow, torch-guided walk through the Deep Sea Trench after the main lights dim, led by a keeper who explains how each resident makes and uses its own light. Included with general admission — just meet at the zone entrance five minutes before the start time.",
+		'Evening Tours',
+		'First Thursday of every month, 6:30\u20137:15pm',
+		'zones/deep-sea-glow-corridor.jpg'
+	);
+	insertEvent.run(
+		'Rainforest After Dark',
+		'rainforest-after-dark',
+		'A short evening walk through Freshwater Rivers & Rainforest as the canopy sounds change and the piranha shoal settles for the night. A gentler, quieter counterpart to Sharks in the Dark, better suited to younger visitors.',
+		'Evening Tours',
+		'Last Friday of every month, 7\u20137:45pm',
+		'zones/freshwater-canopy-walk.jpg'
+	);
+	insertEvent.run(
+		'Reef Keeper Talk',
+		'reef-keeper-talk',
+		'A member of the Coral Reef team talks through what it takes to keep a 120,000-litre reef tank healthy, from coral fragmenting to the daily feeding round, with time afterwards for questions.',
+		'Talks',
+		'Daily, 11am and 2pm',
+		'zones/coral-reef-reef-wall.jpg'
+	);
+	insertEvent.run(
+		'Meet the Keepers: Feeding Time',
+		'meet-the-keepers-feeding-time',
+		'Watch the Touch Pool residents being fed and hear how keepers decide what, and how much, each rockpool species needs.',
+		'Talks',
+		'Daily, 1pm',
+		'creatures/common-starfish.jpg'
+	);
+	insertEvent.run(
+		'Tiny Explorers Rockpool Session',
+		'tiny-explorers-rockpool-session',
+		'A slower-paced, keeper-led Touch Pool session aimed at younger visitors, with simple questions to answer and extra time to look before touching.',
+		'Family Activities',
+		'Every weekend, 10am\u201312pm',
+		'zones/coastal-rockpools-hero.jpg'
+	);
+	insertEvent.run(
+		'Junior Conservationist Workshop',
+		'junior-conservationist-workshop',
+		'A hands-on workshop where younger visitors learn how our conservation team tracks the health of a habitat, using the same simple checks keepers use on the Freshwater Rivers & Rainforest zone.',
+		'Family Activities',
+		'School holidays, 10am\u20133pm',
+		'zones/freshwater-piranha-shoal.jpg'
+	);
+	insertEvent.finalize();
+
 	// Quick sanity check — confirms rows actually landed
 	db.get('SELECT COUNT(*) AS count FROM zones', (err, row) => {
 		if (err) return console.error(err);

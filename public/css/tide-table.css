@@ -18,7 +18,10 @@
 .tide-toggle__btn {
 	padding: 0.6rem 1.2rem;
 	border-radius: var(--radius);
-	border: 1px solid var(--color-teal);
+	/* var(--color-teal) against this card background is only ~1.6:1 -- not
+	   enough for a visible control boundary (WCAG 1.4.11 needs 3:1), so this
+	   uses the same lighter, still on-brand teal as the Contact form fields. */
+	border: 1px solid #3a92ab;
 	background-color: var(--color-deep-alt);
 	color: var(--color-text-light);
 	font-family: var(--font-body);

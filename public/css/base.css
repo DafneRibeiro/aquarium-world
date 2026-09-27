@@ -15,7 +15,7 @@ a {
 	text-decoration: none;
 }
 
-/* Lets keyboard and screen-reader users jump past the 9-link nav straight to
+/* Lets keyboard and screen-reader users jump past the 10-link nav straight to
    the page content (WCAG 2.4.1 Bypass Blocks). Hidden until it receives
    keyboard focus, then it drops into view at the top-left corner. */
 .skip-link {

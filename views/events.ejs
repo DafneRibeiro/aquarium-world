@@ -1,0 +1,41 @@
+<%- include('partials/head', { pageTitle: "What's On", pageStyles: 'events.css' }) %>
+<%- include('partials/header') %>
+
+<main class="events" id="main-content">
+	<div class="page-hero" style="background-image: url('/assets/zones/deep-sea-glow-corridor.jpg');">
+		<div class="page-hero__tint"></div>
+		<div class="page-hero__glass">
+			<h1>What's On</h1>
+			<p class="events__intro">Keeper talks, evening tours and family activities running throughout the year — all included with general admission, no separate ticket needed.</p>
+			<p class="page-hero__credit">Photo: HulloThere, Wikimedia Commons (CC BY 4.0).</p>
+		</div>
+	</div>
+
+	<form class="events__filters" method="GET" action="/events" aria-label="Filter events by type">
+		<button type="submit" name="category" value="" class="events__filter-btn<%= selectedCategory === '' ? ' is-active' : '' %>" aria-pressed="<%= selectedCategory === '' ? 'true' : 'false' %>">All</button>
+		<% categories.forEach(function (cat) { %>
+			<button type="submit" name="category" value="<%= cat %>" class="events__filter-btn<%= selectedCategory === cat ? ' is-active' : '' %>" aria-pressed="<%= selectedCategory === cat ? 'true' : 'false' %>"><%= cat %></button>
+		<% }) %>
+	</form>
+
+	<p class="events__count" aria-live="polite"><%= events.length %> event<%= events.length === 1 ? '' : 's' %><%= selectedCategory ? ' in ' + selectedCategory : '' %></p>
+
+	<div class="events__grid">
+		<% events.forEach(function (event) { %>
+			<article class="card event-card">
+				<% if (event.image) { %>
+					<img class="event-card__image" src="/assets/<%= event.image %>" alt="<%= event.title %>" loading="lazy">
+				<% } %>
+				<p class="event-card__category"><%= event.category %></p>
+				<h2><%= event.title %></h2>
+				<p class="event-card__schedule"><%= event.event_date %></p>
+				<p><%= event.description %></p>
+			</article>
+		<% }) %>
+	</div>
+
+	<p class="events__empty"<% if (events.length !== 0) { %> hidden<% } %>>No events in this category right now — check back soon, or explore everything with the "All" filter above.</p>
+</main>
+
+<script src="/js/events.js"></script>
+<%- include('partials/footer') %>

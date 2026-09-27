@@ -283,6 +283,49 @@ app.get('/tide-table', (req, res) => {
 	res.render('tide-table', { creatures });
 });
 
+// "What's On" events page (Phase 10) — a database-driven list of keeper talks,
+// evening tours and family activities, with an AJAX category filter. The same
+// filtering logic backs both a normal server-rendered page (/events) and a JSON
+// API (/api/events) used by public/js/events.js, so filtering keeps working
+// even if a visitor has JavaScript turned off.
+const EVENT_CATEGORIES = ['Talks', 'Family Activities', 'Evening Tours'];
+
+function queryEvents(category, callback) {
+	if (category && EVENT_CATEGORIES.includes(category)) {
+		db.all('SELECT * FROM events WHERE category = ? ORDER BY id', [category], callback);
+	} else {
+		db.all('SELECT * FROM events ORDER BY id', [], callback);
+	}
+}
+
+app.get('/events', (req, res) => {
+	const requested = typeof req.query.category === 'string' ? req.query.category : '';
+	const selectedCategory = EVENT_CATEGORIES.includes(requested) ? requested : '';
+
+	queryEvents(selectedCategory, (err, events) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('Something went wrong loading events.');
+		}
+		res.render('events', { events, categories: EVENT_CATEGORIES, selectedCategory });
+	});
+});
+
+// JSON API used by the events page's AJAX filter — same query, same validation,
+// just returned as data instead of a rendered page.
+app.get('/api/events', (req, res) => {
+	const requested = typeof req.query.category === 'string' ? req.query.category : '';
+	const selectedCategory = EVENT_CATEGORIES.includes(requested) ? requested : '';
+
+	queryEvents(selectedCategory, (err, events) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).json({ error: 'Something went wrong loading events.' });
+		}
+		res.json({ events, selectedCategory });
+	});
+});
+
 // Start the server and listen on port 5000
 app.listen(5000, () => {
 	console.log('Aquarium World running at http://localhost:5000');

@@ -40,7 +40,7 @@ CREATE TABLE contact_messages (
   submitted_at TEXT DEFAULT (datetime('now')) NOT NULL
 );
 
--- Sketched now, built later (Phase 10 stretch goal)
+-- "What's On" events page (Phase 10)
 CREATE TABLE events (
   id          INTEGER PRIMARY KEY,
   title       TEXT NOT NULL,
