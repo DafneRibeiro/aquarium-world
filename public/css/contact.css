@@ -46,7 +46,10 @@
 	font-size: 1rem;
 	padding: 0.6rem;
 	border-radius: var(--radius);
-	border: 1px solid var(--color-teal);
+	/* var(--color-teal) alone only reaches ~1.6:1 against this field's background --
+	   not enough for a visible field boundary (WCAG 1.4.11 needs 3:1), so the resting
+	   border uses a lighter, still on-brand teal instead. */
+	border: 1px solid #3a92ab;
 	background-color: var(--color-deep-alt);
 	color: var(--color-text-light);
 }
